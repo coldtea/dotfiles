@@ -35,9 +35,11 @@ activity ""
 hardstatus alwayslastline '%{= dW}[ %{dg}%H %{dW}][%{dc}%= %?%-Lw%?%{dy}(%{dW}%n*%f %t%?(%u)%?%{dy})%{= dc}%?%+Lw%?%?%= %{dW}][%{dM}%l%{dW}][%{dy} %m/%d %c %{dW}]'
 
 # misc keybinds
-#bindkey -k k; quit      #F10 to quit screen
-#bindkey "^[Od" prev     # change window with ctrl-left
-#bindkey "^[Oc" next     # change window with ctrl-right
+bindkey -k k; quit      #F10 to quit screen
+bindkey "^[Od" prev     # change window with ctrl-left
+bindkey "^[Oc" next     # change window with ctrl-right
+
+escape ^za
 
 # find the next shell
 bind s select bash 

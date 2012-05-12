@@ -37,7 +37,7 @@ myBorderWidth   = 1
 
 myModMask       = mod4Mask
 
-myWorkspaces    = ["1:web","2:dev","3:chat","4:irc","5:media","0:*"]
+myWorkspaces    = ["1:web","2:mail","3:chat","4:dev","5:media","0:*"]
 
 myNormalBorderColor  = "#5A5A5A"
 myFocusedBorderColor = "#FF7700"
@@ -52,6 +52,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- launch dmenu
     , ((modm,               xK_p     ), spawn "exe=`dmenu_run -nb Black -nf Gray -sb Black`")
+
+    -- launch session script
+    , ((modm,               xK_s     ), spawn "exe=`~/bin/session.sh`")
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
@@ -212,16 +215,22 @@ myManageHook = composeAll
       className =? "Gimp"                        --> doFloat
     , className =? "Xmessage"                    --> doFloat
     , className =? "Select Font"                 --> doFloat
-    , className =? "gtk-chtheme"                 --> doFloat
     , className =? "Google-chrome"               --> doShift "1:web"
+    , className =? "Chromium"                    --> doShift "1:web"
     , className =? "Transmission"                --> doShift "1:web"
-    , className =? "SpringSource Tool Suite"     --> doFloat
-    , className =? "Eclipse"                     --> doFloat
-    , className =? "Emacs"                       --> doShift "2:dev"
+
+    , className =? "Thunderbird"                 --> doShift "2:mail"
+
     , className =? "Xchat"                       --> doShift "3:chat"
     , className =? "Pidgin"                      --> doShift "3:chat"
     , className =? "Skype"                       --> doShift "3:chat"
+
+    , className =? "SpringSource Tool Suite"     --> doShift "4:dev"
+    , className =? "Eclipse"                     --> doShift "4:dev"
+    , className =? "Emacs"                       --> doShift "4:dev"
+
     , className =? "Gnome-mplayer"               --> doShift "5:media"
+
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore
     , manageDocks

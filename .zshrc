@@ -111,6 +111,9 @@ alias sqlplus='rlwrap sqlplus'
 alias start-ora='sudo /etc/rc.d/oracle-xe start'
 alias stop-ora='sudo /etc/rc.d/oracle-xe stop'
 alias ls='ls --color'
+alias ec='emacsclient'
+alias heroku='~/.gem/ruby/1.9.1/gems/heroku-2.24.0/bin/heroku'
+alias tmux='tmux at'
 
 # aliases for Git
 alias ga='git add'
