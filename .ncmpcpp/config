@@ -83,3 +83,4 @@ visualizer_output_name = "my_fifo"
 visualizer_sync_interval = "1"
 visualizer_type = "spectrum" (spectrum/wave)
 visualizer_color = "black"
+execute_on_song_change = ~/bin/mpdnotify

@@ -3,6 +3,8 @@
 Xcursor*theme:  Vanilla-DMZ-AA
 Xcursor.size:   22
 
+Emacs.font:     LiberationMono:size=13
+
 ! terminal colors ------------------------------------------------------------
 
 ! tangoesque scheme
@@ -36,22 +38,14 @@ Xcursor.size:   22
 ! rxvt-unicode ---------------------------------------------------------------
 
 !for antialiased fonts (using Xft)
-!urxvt*font:     xft:Envy Code R:pixelsize=13
-urxvt*font:     xft:Ubuntu Mono:pixelsize=14
-urxvt*boldFont: xft:Ubuntu Mono:pixelsize=14
-!urxvt*boldFont: xft:dejavu sans mono:pixelsize=14
-!urxvt*font:     xft:Pragmata:pixelsize=13
-!urxvt*boldFont: xft:Pragmata:pixelsize=13
+!urxvt*font:     xft:Ubuntu Mono:pixelsize=14
+!urxvt*boldFont: xft:Ubuntu Mono:pixelsize=14
 
 !for normal X11 fonts:
-!urxvt*font:      -*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*
-!urxvt*boldFont:  -*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*
-!urxvt*font:      -*-dina-medium-r-*-*-16-*-*-*-*-*-*-*
-!urxvt*boldFont:  -*-dina-medium-r-*-*-16-*-*-*-*-*-*-*
-!urxvt*font:      -*-proggyclean-*-*-*-*-*-*-*-*-*-*-*-*
-!urxvt*boldFont:  -*-proggyclean-*-*-*-*-*-*-*-*-*-*-*-*
-!urxvt*font:      -*-proggysquaresz-*-*-*-*-*-*-*-*-*-*-*-*
-!urxvt*boldFont:  -*-proggysquaresz-*-*-*-*-*-*-*-*-*-*-*-*
+urxvt*font:      -*-proggyclean-*-*-*-*-*-*-*-*-*-*-*-*
+urxvt*boldFont:  -*-proggyclean-*-*-*-*-*-*-*-*-*-*-*-*
+!urxvt*font:      -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
+!urxvt*boldFont:  -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
 
 urxvt*geometry:           160x50
 urxvt*internalBorder:     5
@@ -79,7 +73,6 @@ urxvt*mapAlert:           true
 urxvt*utmpInhibit:        true
 urxvt*perl-lib:           /usr/lib/urxvt/perl/
 urxvt*perl-ext-common:    default,matcher
-urxvt*urlLauncher:        /usr/bin/firefox
+urxvt*urlLauncher:        /usr/bin/chromium
 urxvt*matcher.button:     1
-!urxvt*background:         #000000
 urxvt*background:         rgba:0000/0000/0000/dddd

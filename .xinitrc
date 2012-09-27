@@ -1,3 +1,8 @@
+# rehash fonts
+xset +fp /usr/share/fonts/misc
+xset +fp /usr/share/fonts/local
+xset fp rehash
+
 # disable PC speaker
 xset -b
 
@@ -10,21 +15,31 @@ setxkbmap -layout 'us,ru' -option 'grp:caps_toggle'
 # set random wallpaper
 exec ./bin/set-wallpaper.sh &
 
-# start tmux
-exec urxvt -e bash -c "tmux -q has-session && exec tmux attach-session -d || exec tmux new-session -n$USER -s$USER@$HOSTNAME" &
-
 # fix misbehaving Java applications
 wmname LG3D
 
+# autolocker
+xautolock -time 30 -locker "i3lock -c 000000" &
+
 # start applications
+xbindkeys &
 xcompmgr -n &
 urxvtd -q -f -o &
 dropboxd &
-thunderbird &
 emacs --daemon &
 unclutter &
 
-# start window manager supplied as argument by cdm
-wm_bin="$1"
-exec ck-launch-session bash -c "devmon & ${wm_bin}"
+# start window manager supplied as argument by slim
+DEFAULT_SESSION=xmonad
 
+case $1 in
+xmonad)
+        exec xmonad
+        ;;
+xfce4)
+        exec startxfce4
+        ;;
+*)
+        exec $DEFAULT_SESSION
+        ;;
+esac

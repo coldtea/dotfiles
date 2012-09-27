@@ -3,9 +3,13 @@
 ;; ----------------------------------------------------------------------
 ;; set color theme
 ;; ----------------------------------------------------------------------
-;;(add-to-list 'load-path "/home/sober/.emacs.d/elpa/color-theme-6.6.0")
-;;(require 'color-theme)
-;;(color-theme-charcoal-black)
+(if window-system
+  (require 'color-theme))
+
+(eval-after-load "color-theme"
+  '(progn
+    (color-theme-initialize)
+    (color-theme-montz)))
 
 ;; ----------------------------------------------------------------------
 ;; ido-mode for buffer selection
@@ -46,3 +50,16 @@
 ;; ----------------------------------------------------------------------
 (eshell)
 
+;; ----------------------------------------------------------------------
+;; Scala
+;; ----------------------------------------------------------------------
+(require 'scala-mode-auto)
+(add-to-list 'load-path "/usr/share/ensime/elisp") 
+(require 'ensime)
+(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+
+;; ----------------------------------------------------------------------
+;; Clojure
+;; ----------------------------------------------------------------------
+(defun turn-on-paredit () (paredit-mode 1))
+(add-hook 'clojure-mode-hook 'turn-on-paredit)

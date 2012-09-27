@@ -31,13 +31,13 @@ import qualified Data.Map        as M
 myTerminal      = "urxvtc"
 
 myFocusFollowsMouse :: Bool
-myFocusFollowsMouse = True
+myFocusFollowsMouse = False
 
 myBorderWidth   = 1
 
 myModMask       = mod4Mask
 
-myWorkspaces    = ["1:web","2:mail","3:chat","4:dev","5:media","0:*"]
+myWorkspaces    = ["1:web","2:dev","3:chat","4:media","0:*"]
 
 myNormalBorderColor  = "#5A5A5A"
 myFocusedBorderColor = "#FF7700"
@@ -201,10 +201,11 @@ basicLayout = Tall nmaster delta ratio where
 
 wideLayout = smartBorders(  named "wide"    $ Mirror basicLayout)
 tallLayout = smartBorders(  named "tall"    $ basicLayout)
-tabbedLayout = noBorders(   named "fulltab" $ simpleTabbed)
+tabbedLayou  = noBorders(   named "fulltab" $ simpleTabbed)
 floatLayout   = maximize (  named "float"   $ simpleFloat)
 fullNoBorders = noBorders ( named "Full"    $ Full)
-imLayout      = noBorders(  named "im"      $ reflectHoriz $ gridIM (1%5) (Role "buddy_list"))
+ 
+imLayout      = noBorders(  named "im"      $ reflectHoriz $ gridIM (1%5) (Role "dmytro_morozov - Skype™"))
 
 myLayout = avoidStruts $
          onWorkspaces ["3:chat"] imLayout $
@@ -219,17 +220,15 @@ myManageHook = composeAll
     , className =? "Chromium"                    --> doShift "1:web"
     , className =? "Transmission"                --> doShift "1:web"
 
-    , className =? "Thunderbird"                 --> doShift "2:mail"
-
-    , className =? "Xchat"                       --> doShift "3:chat"
     , className =? "Pidgin"                      --> doShift "3:chat"
     , className =? "Skype"                       --> doShift "3:chat"
 
-    , className =? "SpringSource Tool Suite"     --> doShift "4:dev"
-    , className =? "Eclipse"                     --> doShift "4:dev"
-    , className =? "Emacs"                       --> doShift "4:dev"
+    , className =? "SpringSource Tool Suite"     --> doShift "2:dev"
+    , className =? "Eclipse"                     --> doShift "2:dev"
+    , className =? "Emacs"                       --> doShift "2:dev"
 
-    , className =? "Gnome-mplayer"               --> doShift "5:media"
+    , className =? "Gnome-mplayer"               --> doShift "4:media"
+    , className =? "vlc"                         --> doShift "4:media"
 
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore
@@ -249,7 +248,7 @@ myLogHook = dynamicLogWithPP $ byorgeyPP
 ------------------------------------------------------------------------
 -- My StatusBar
 
-myBar = "xmobar /home/sober/.xmobarrc"
+myBar = "xmobar"
 myPP = xmobarPP {
     ppCurrent = xmobarColor "#FFFFFF" "" . wrap "[" "]",
     ppUrgent                = xmobarColor "#FFFFFF" "#FF0000" . wrap "" "*" . xmobarStrip,
