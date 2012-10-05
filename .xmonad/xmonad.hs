@@ -37,7 +37,7 @@ myBorderWidth   = 1
 
 myModMask       = mod4Mask
 
-myWorkspaces    = ["1:web","2:dev","3:chat","4:media","0:*"]
+myWorkspaces    = ["1:web","2:dev","3:pidgin","4:skype","5:video","0:*"]
 
 myNormalBorderColor  = "#5A5A5A"
 myFocusedBorderColor = "#FF7700"
@@ -205,10 +205,11 @@ tabbedLayou  = noBorders(   named "fulltab" $ simpleTabbed)
 floatLayout   = maximize (  named "float"   $ simpleFloat)
 fullNoBorders = noBorders ( named "Full"    $ Full)
  
-imLayout      = noBorders(  named "im"      $ reflectHoriz $ gridIM (1%5) (Role "dmytro_morozov - Skype™"))
+pidginLayout = noBorders(withIM (1%5) (Role "buddy_list") Grid)
 
 myLayout = avoidStruts $
-         onWorkspaces ["3:chat"] imLayout $
+         onWorkspaces ["3:pidgin"] pidginLayout $
+         onWorkspaces ["4:skype"] fullNoBorders $
          fullNoBorders ||| basicLayout  ||| floatLayout
 
 myManageHook = composeAll
@@ -220,15 +221,15 @@ myManageHook = composeAll
     , className =? "Chromium"                    --> doShift "1:web"
     , className =? "Transmission"                --> doShift "1:web"
 
-    , className =? "Pidgin"                      --> doShift "3:chat"
-    , className =? "Skype"                       --> doShift "3:chat"
+    , className =? "Pidgin"                      --> doShift "3:pidgin"
+    , className =? "Skype"                       --> doShift "4:skype"
 
     , className =? "SpringSource Tool Suite"     --> doShift "2:dev"
     , className =? "Eclipse"                     --> doShift "2:dev"
     , className =? "Emacs"                       --> doShift "2:dev"
 
-    , className =? "Gnome-mplayer"               --> doShift "4:media"
-    , className =? "vlc"                         --> doShift "4:media"
+    , className =? "Gnome-mplayer"               --> doShift "5:video"
+    , className =? "vlc"                         --> doShift "5:video"
 
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore

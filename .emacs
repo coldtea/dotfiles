@@ -46,11 +46,6 @@
 (setq indent-tabs-mode nil)
 
 ;; ----------------------------------------------------------------------
-;; start eshel
-;; ----------------------------------------------------------------------
-(eshell)
-
-;; ----------------------------------------------------------------------
 ;; Scala
 ;; ----------------------------------------------------------------------
 (require 'scala-mode-auto)
@@ -61,5 +56,21 @@
 ;; ----------------------------------------------------------------------
 ;; Clojure
 ;; ----------------------------------------------------------------------
+
+;; Wrap this in a function!
+(when (not (package-installed-p 'nrepl))
+  (package-install 'nrepl))
+
+(when (not (package-installed-p 'clojure-mode))
+  (package-install 'clojure-mode))
+
 (defun turn-on-paredit () (paredit-mode 1))
 (add-hook 'clojure-mode-hook 'turn-on-paredit)
+
+;; ----------------------------------------------------------------------
+;; Lisp
+;; ----------------------------------------------------------------------
+;; (setq inferior-lisp-program "/usr/bin/sbcl")
+;; (require 'slime)
+;; (add-hook 'slime-mode-hook)
+;; (slime-setup)
