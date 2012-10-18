@@ -1,3 +1,5 @@
 .emacs.d/*
+.xmonad/*
+!.xmonad/xmonad.hs
 !.emacs.d/init.el
 *.log

@@ -3,13 +3,13 @@
 ;; ----------------------------------------------------------------------
 ;; set color theme
 ;; ----------------------------------------------------------------------
-(if window-system
-  (require 'color-theme))
+;; (if window-system
+;;   (require 'color-theme))
 
-(eval-after-load "color-theme"
-  '(progn
-    (color-theme-initialize)
-    (color-theme-montz)))
+;; (eval-after-load "color-theme"
+;;   '(progn
+;;     (color-theme-initialize)
+;;     (color-theme-montz)))
 
 ;; ----------------------------------------------------------------------
 ;; ido-mode for buffer selection
@@ -68,9 +68,34 @@
 (add-hook 'clojure-mode-hook 'turn-on-paredit)
 
 ;; ----------------------------------------------------------------------
+;; Scheme
+;; ----------------------------------------------------------------------
+(setq geiser-active-implementations '(racket))
+
+;; ----------------------------------------------------------------------
 ;; Lisp
 ;; ----------------------------------------------------------------------
 ;; (setq inferior-lisp-program "/usr/bin/sbcl")
 ;; (require 'slime)
 ;; (add-hook 'slime-mode-hook)
 ;; (slime-setup)
+
+;; -------------------------------------------------------------------
+;; Find files with recentf and i-do
+;; -------------------------------------------------------------------
+(require 'recentf)
+(global-set-key (kbd "C-x C-r") 'ido-recentf)
+ 
+;; enable recent files mode.
+(recentf-mode t)
+(setq recentf-max-saved-items 50)
+
+(defun ido-recentf ()
+  "Use ido to select a recently opened file from the `recentf-list'"
+  (interactive)
+  (let ((home (expand-file-name (getenv "HOME"))))
+    (find-file (ido-completing-read "Recentf open: "
+                          (mapcar
+                           (lambda (path) (replace-regexp-in-string home "~" path))
+                           recentf-list)
+                          nil t))))

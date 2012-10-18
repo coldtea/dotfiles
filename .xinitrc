@@ -22,10 +22,11 @@ wmname LG3D
 xautolock -time 30 -locker "i3lock -c 000000" &
 
 # start applications
+# dropboxd &
+spacefm -d &
 xbindkeys &
 xcompmgr -n &
 urxvtd -q -f -o &
-dropboxd &
 emacs --daemon &
 unclutter &
 
@@ -38,6 +39,9 @@ xmonad)
         ;;
 xfce4)
         exec startxfce4
+        ;;
+stumpwm)
+        exec /home/data/dev/github/stumpwm/stumpwm
         ;;
 *)
         exec $DEFAULT_SESSION

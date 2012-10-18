@@ -1,0 +1,69 @@
+# Set up the prompt
+
+export HOSTNAME=`cat /etc/hostname`
+
+export MPD_HOST=127.0.0.1
+export MPD_PORT=6600
+
+# Set default editor
+export EDITOR="emacs -nw"
+
+# Environmental variables
+# ---------------------------------------------------------------------------
+# add xmonad executable to $PATH
+if [ -d ~/.xmonad ]; then
+    PATH=$PATH:~/.xmonad
+    export PATH
+fi
+
+if [ -d ~/bin ]; then
+    PATH=~/bin:$PATH
+    export PATH
+fi
+
+JAVA_HOME=/opt/java
+if [ -d $JAVA_HOME ]; then
+    export JAVA_HOME
+    PATH=$JAVA_HOME/bin:$PATH
+fi
+
+export JAVA_FONTS=/usr/share/fonts/TTF
+
+# tmux
+# ---------------------------------------------------------------------------
+
+# set the correct term in tmux
+[ -n "$TMUX" ] && export TERM=screen-256color
+
+# TMUX
+if which tmux 2>&1 >/dev/null; then
+    #if not inside a tmux session, and if no session is started, start a new session
+    test -z "$TMUX" && (tmux attach || tmux new-session)
+fi
+
+# aliases
+# ---------------------------------------------------------------------------
+alias cdmus='cd /home/data/music'
+alias cdmov='cd /home/data/movies'
+alias cddev='cd /home/data/dev/'
+alias cdproj='cd /home/data/dev/projects'
+alias cdlib='cd /home/data/library'
+alias emacs='emacs -nw'
+alias ls='ls --color'
+alias ec='emacsclient'
+
+# aliases for Git
+alias ga='git add'
+alias gp='git push'
+alias gl='git log'
+alias gs='git status'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gm='git commit -m'
+alias gma='git commit -am'
+alias gb='git branch'
+alias gc='git checkout'
+alias gra='git remote add'
+alias grr='git remote rm'
+alias gpu='git pull'
+alias gcl='git clone'
