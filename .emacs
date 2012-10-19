@@ -3,13 +3,13 @@
 ;; ----------------------------------------------------------------------
 ;; set color theme
 ;; ----------------------------------------------------------------------
-;; (if window-system
-;;   (require 'color-theme))
+(if window-system
+  (require 'color-theme))
 
-;; (eval-after-load "color-theme"
-;;   '(progn
-;;     (color-theme-initialize)
-;;     (color-theme-montz)))
+(eval-after-load "color-theme"
+  '(progn
+    (color-theme-initialize)
+    (color-theme-cyberpunk)))
 
 ;; ----------------------------------------------------------------------
 ;; ido-mode for buffer selection
@@ -20,9 +20,11 @@
 ;; Package management
 ;; ----------------------------------------------------------------------
 (require 'package)
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives 
+    '("marmalade" .
+      "http://marmalade-repo.org/packages/"))
 (package-initialize)
+
 (when (null package-archive-contents)
   (package-refresh-contents))
 

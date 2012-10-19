@@ -3,7 +3,8 @@
 Xcursor*theme:  Vanilla-DMZ-AA
 Xcursor.size:   22
 
-Emacs.font:     LiberationMono:size=13
+Emacs.font:  Terminus 10
+!Emacs.font:  Liberation Mono 10
 
 ! terminal colors ------------------------------------------------------------
 
@@ -44,8 +45,6 @@ Emacs.font:     LiberationMono:size=13
 !for normal X11 fonts:
 urxvt*font:      -*-proggyclean-*-*-*-*-*-*-*-*-*-*-*-*
 urxvt*boldFont:  -*-proggyclean-*-*-*-*-*-*-*-*-*-*-*-*
-!urxvt*font:      -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
-!urxvt*boldFont:  -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
 
 urxvt*geometry:           160x50
 urxvt*internalBorder:     5

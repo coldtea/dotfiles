@@ -208,8 +208,9 @@ fullNoBorders = noBorders ( named "Full"    $ Full)
 pidginLayout = noBorders(withIM (1%5) (Role "buddy_list") Grid)
 
 myLayout = avoidStruts $
-         onWorkspaces ["3:pidgin"] pidginLayout $
-         onWorkspaces ["4:skype"] fullNoBorders $
+         onWorkspaces ["2:dev"]    fullNoBorders $
+         onWorkspaces ["3:pidgin"] pidginLayout  $
+         onWorkspaces ["4:skype"]  fullNoBorders $
          fullNoBorders ||| basicLayout  ||| floatLayout
 
 myManageHook = composeAll
