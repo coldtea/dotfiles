@@ -11,9 +11,7 @@
     (color-theme-initialize)
     (color-theme-cyberpunk)))
 
-;; ----------------------------------------------------------------------
 ;; ido-mode for buffer selection
-;; ----------------------------------------------------------------------
 (ido-mode t)
 
 ;; ----------------------------------------------------------------------
@@ -23,29 +21,21 @@
 (add-to-list 'package-archives 
     '("marmalade" .
       "http://marmalade-repo.org/packages/"))
+
 (package-initialize)
+
+(setq package-list '(dired-single
+                     undo-tree
+                     paredit
+                     nrepl
+                     clojure-mode))
 
 (when (null package-archive-contents)
   (package-refresh-contents))
 
-;; ----------------------------------------------------------------------
-;; whitespace mode
-;; ----------------------------------------------------------------------
-(require 'whitespace)
-(setq whitespace-style '(trailing tabs tab-mark
-                                  indentation
-                                  space-before-tab
-                                  space-after-tab))
-
-;; ----------------------------------------------------------------------
-;; configure tab behaviour
-;; ----------------------------------------------------------------------
-;;(global-set-key "\C-i" 'self-insert-command)
-;;(setq indent-line-function 'insert-tab)
-(setq tab-width 4)
-(setq default-tab-width 4)
-;;(setq tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80))
-(setq indent-tabs-mode nil)
+(dolist (package package-list)
+  (when (not (package-installed-p package))
+    (package-install package)))
 
 ;; ----------------------------------------------------------------------
 ;; Scala
@@ -56,48 +46,20 @@
 (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
 ;; ----------------------------------------------------------------------
-;; Clojure
+;; load packages
 ;; ----------------------------------------------------------------------
-
-;; Wrap this in a function!
-(when (not (package-installed-p 'nrepl))
-  (package-install 'nrepl))
-
-(when (not (package-installed-p 'clojure-mode))
-  (package-install 'clojure-mode))
-
-(defun turn-on-paredit () (paredit-mode 1))
-(add-hook 'clojure-mode-hook 'turn-on-paredit)
-
-;; ----------------------------------------------------------------------
-;; Scheme
-;; ----------------------------------------------------------------------
-(setq geiser-active-implementations '(racket))
-
-;; ----------------------------------------------------------------------
-;; Lisp
-;; ----------------------------------------------------------------------
-;; (setq inferior-lisp-program "/usr/bin/sbcl")
-;; (require 'slime)
-;; (add-hook 'slime-mode-hook)
-;; (slime-setup)
+;;(load "~/.emacs.d/rc/emacs-rc-yasnippet.el")
+(load "~/.emacs.d/rc/emacs-rc-dired.el")
+(load "~/.emacs.d/rc/emacs-rc-paredit.el")
+(load "~/.emacs.d/rc/emacs-rc-keybindings.el")
+(load "~/.emacs.d/rc/emacs-rc-whitespace.el")
 
 ;; -------------------------------------------------------------------
-;; Find files with recentf and i-do
+;; undo
 ;; -------------------------------------------------------------------
-(require 'recentf)
-(global-set-key (kbd "C-x C-r") 'ido-recentf)
- 
-;; enable recent files mode.
-(recentf-mode t)
-(setq recentf-max-saved-items 50)
+(require 'undo-tree)
+(global-undo-tree-mode)
 
-(defun ido-recentf ()
-  "Use ido to select a recently opened file from the `recentf-list'"
-  (interactive)
-  (let ((home (expand-file-name (getenv "HOME"))))
-    (find-file (ido-completing-read "Recentf open: "
-                          (mapcar
-                           (lambda (path) (replace-regexp-in-string home "~" path))
-                           recentf-list)
-                          nil t))))
+;; expand-region
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)

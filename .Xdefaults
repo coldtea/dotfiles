@@ -1,51 +1,18 @@
-!Xcursor --------------------------------------------------------------------
+
+! terminal colors ------------------------------------------------------------
+#include "/home/dmi3y/.colours/dark"
+
+! applications ---------------------------------------------------------------
 
 Xcursor*theme:  Vanilla-DMZ-AA
 Xcursor.size:   22
 
 Emacs.font:  Terminus 10
-!Emacs.font:  Liberation Mono 10
+Emacs.fullscreen: maximized
 
-! terminal colors ------------------------------------------------------------
 
-! tangoesque scheme
-*background:  #000000
-*foreground:  #aaaaaa
-! Black
-*color0:      #000000
-*color8:      #555753
-! Red
-*color1:      #ff6565
-*color9:      #ff8d8d
-! Green
-*color2:      #93d44f
-*color10:     #c8e7a8
-! Yellow
-*color3:      #eab93d
-*color11:     #ffc123
-! Blue
-*color4:      #204a87
-*color12:     #3465a4
-! Mangenta
-*color5:      #ce5c00
-*color13:     #f57900
-! Cyan 
-*color6:      #89b6e2
-*color14:     #46a4ff
-! White
-*color7:      #cccccc
-*color15:     #ffffff
-
-! rxvt-unicode ---------------------------------------------------------------
-
-!for antialiased fonts (using Xft)
-!urxvt*font:     xft:Ubuntu Mono:pixelsize=14
-!urxvt*boldFont: xft:Ubuntu Mono:pixelsize=14
-
-!for normal X11 fonts:
 urxvt*font:      -*-proggyclean-*-*-*-*-*-*-*-*-*-*-*-*
 urxvt*boldFont:  -*-proggyclean-*-*-*-*-*-*-*-*-*-*-*-*
-
 urxvt*geometry:           160x50
 urxvt*internalBorder:     5
 urxvt*fading:             20
@@ -71,7 +38,8 @@ urxvt*secondaryScroll:    true
 urxvt*mapAlert:           true
 urxvt*utmpInhibit:        true
 urxvt*perl-lib:           /usr/lib/urxvt/perl/
-urxvt*perl-ext-common:    default,matcher
+urxvt*perl-ext-common:    default,matcher,fullscreen
+urxvt*keysym.F11:         perl:fullscreen:switch
 urxvt*urlLauncher:        /usr/bin/chromium
 urxvt*matcher.button:     1
 urxvt*background:         rgba:0000/0000/0000/dddd

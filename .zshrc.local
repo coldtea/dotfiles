@@ -8,6 +8,9 @@ export MPD_PORT=6600
 # Set default editor
 export EDITOR="emacs -nw"
 
+# run ssh-agent
+eval $(keychain --eval --agents ssh -Q --quiet id_rsa)
+
 # Environmental variables
 # ---------------------------------------------------------------------------
 # add xmonad executable to $PATH
@@ -21,13 +24,12 @@ if [ -d ~/bin ]; then
     export PATH
 fi
 
-JAVA_HOME=/opt/java
-if [ -d $JAVA_HOME ]; then
-    export JAVA_HOME
-    PATH=$JAVA_HOME/bin:$PATH
-fi
 
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+# Better fonts for Java applications
 export JAVA_FONTS=/usr/share/fonts/TTF
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
 # tmux
 # ---------------------------------------------------------------------------

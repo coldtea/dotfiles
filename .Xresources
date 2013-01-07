@@ -1,2 +1,6 @@
 emacs.fullscreen: maximized
+URxvt.fullscreen: maximized
 eclipse.fullscreen: maximized
+
+! -- Colours -- !
+#include "/home/dmi3y/.colours/dark"
