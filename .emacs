@@ -13,9 +13,9 @@
                      paredit
                      nrepl
                      clojure-mode
-					 color-theme
-					 cyberpunk-theme
-					 starter-kit
+                     color-theme
+                     cyberpunk-theme
+                     starter-kit
                      magit))
 
 (when (null package-archive-contents)
